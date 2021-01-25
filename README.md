@@ -176,6 +176,7 @@ With nginx:
 
 ![image](https://user-images.githubusercontent.com/54719289/105764522-17378f80-5f7d-11eb-94a3-593f387f4ea9.png)
 
+   
 
 
 ##########################################################################################################################################
@@ -252,12 +253,91 @@ Sample:https://docs.docker.com/engine/swarm/stack-deploy/
         After creating image, check with docker ps
 ![image](https://user-images.githubusercontent.com/54719289/105767240-d3df2000-5f80-11eb-95cb-6a82924819b1.png)
 
+  8.	docker-compose down   (checked the image with docker compose,so will try with with docker-stack)
+  
+  
+![image](https://user-images.githubusercontent.com/54719289/105767864-99c24e00-5f81-11eb-9a33-19703567f235.png)
 
-   8.   Check the image with curl
+
+  	 Check the image with curl
    
-        curl localhost:8000/
+        	curl localhost:8000/
         
    ![image](https://user-images.githubusercontent.com/54719289/105767573-30dad600-5f81-11eb-9238-bead4f13500a.png)
-   
-   
-   
+  
+
+  9.	docker stack deploy --compose-file docker-compose.yml stackdemo
+  	Changed compose-yml version as 3.8
+	
+![image](https://user-images.githubusercontent.com/54719289/105768254-23721b80-5f82-11eb-82da-3452ba528821.png)
+
+	docker ps
+	
+![image](https://user-images.githubusercontent.com/54719289/105768542-8663b280-5f82-11eb-95e6-fcc9c8fc8008.png)
+
+	docker-compose push
+	
+	need to change the composefile with our repo as klogambigai/stackdemo
+	
+	![image](https://user-images.githubusercontent.com/54719289/105769098-5072fe00-5f83-11eb-8708-7bab1ee198e9.png)
+	
+	follow step 7, docker-compose build & docker-compose push
+![image](https://user-images.githubusercontent.com/54719289/105769582-06d6e300-5f84-11eb-8b65-3b319cd226c9.png)
+
+![image](https://user-images.githubusercontent.com/54719289/105769627-1b1ae000-5f84-11eb-971e-56c70a3ff8ff.png)
+
+	docker stack deploy --compose-file docker-compose.yml stackdemo
+	
+![image](https://user-images.githubusercontent.com/54719289/105769800-6208d580-5f84-11eb-9763-2a2eff103076.png)
+	
+	Check in master slaves
+
+![image](https://user-images.githubusercontent.com/54719289/105770216-ea877600-5f84-11eb-82ae-e2475cb1dac4.png)
+![image](https://user-images.githubusercontent.com/54719289/105770271-f7a46500-5f84-11eb-88d5-fc7790c3fc78.png)
+![image](https://user-images.githubusercontent.com/54719289/105770296-012dcd00-5f85-11eb-86b1-c83ab28a6fa3.png)
+![image](https://user-images.githubusercontent.com/54719289/105770329-0be86200-5f85-11eb-8376-1de4ebb48f5d.png)
+![image](https://user-images.githubusercontent.com/54719289/105770341-11de4300-5f85-11eb-94f3-82346bba4acc.png)
+![image](https://user-images.githubusercontent.com/54719289/105770358-19055100-5f85-11eb-9148-50fff17b014e.png)
+
+
+
+  10.	docker stack services stackdemo
+  
+  	docker stack ls
+	
+	docker stack services stackdemo
+	
+![image](https://user-images.githubusercontent.com/54719289/105770744-a21c8800-5f85-11eb-84ae-444e69dec265.png)
+
+  
+  11.	curl http://localhost:8000  to test
+  
+  ![image](https://user-images.githubusercontent.com/54719289/105770889-cbd5af00-5f85-11eb-8926-6bf6f464c5ce.png)
+  
+  12.	To update the stack
+  
+  	  docker service update --replicas=5 stackdemo_redis
+	  docker service update --replicas=5 stackdemo_web
+	  
+![image](https://user-images.githubusercontent.com/54719289/105771593-ccbb1080-5f86-11eb-9d41-18f835cb2cd5.png)
+	  
+
+  
+  12.	Bring the stack down with docker stack rm:
+
+	$ docker stack rm stackdemo
+
+	Removing service stackdemo_web
+	Removing service stackdemo_redis
+	Removing network stackdemo_default
+	
+  13.	Bring the registry down with docker service rm:
+
+	$ docker service rm registry
+	
+	If you’re just testing things out on a local machine and want to bring your Docker Engine out of swarm mode, use docker swarm leave:
+
+	$ docker swarm leave --force
+  
+  
+  
