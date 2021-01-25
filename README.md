@@ -34,6 +34,7 @@
 ![image](https://user-images.githubusercontent.com/54719289/105717078-b2147780-5f45-11eb-8fa7-dd4937dc095c.png)
 
 
+
 # Checking service entry in node 2:
     docker ps
 ![image](https://user-images.githubusercontent.com/54719289/105717231-e2f4ac80-5f45-11eb-869a-1447cf039750.png)
@@ -101,7 +102,7 @@ With nginx:
 ![image](https://user-images.githubusercontent.com/54719289/105752017-cae45380-5f6c-11eb-8135-da0928f68f29.png)
 
     
-    Second node drain:
+    Second node drain: (staus is active but Availability is Drain)
     
     docker node update --availability drain node2
            
@@ -115,6 +116,54 @@ With nginx:
     
 ![image](https://user-images.githubusercontent.com/54719289/105752133-e8b1b880-5f6c-11eb-9798-b6523a0d6454.png)
 
+
+# Docker node active command:
+
+         
+        # Docker service update:
+
+        docker service update --replicas=5 --publish-add=80 my_web
+
+   ![image](https://user-images.githubusercontent.com/54719289/105757460-ffa7d900-5f73-11eb-9fe8-47a915fa7590.png)
+   
+        docker node update --availability active node-hostname
+       
+        docker node update --availability active nodde1   
+   
+   ![image](https://user-images.githubusercontent.com/54719289/105757683-4bf31900-5f74-11eb-84c4-6e818cf71ea3.png)
+
+    After activate the node, the workload will not be shared to nodes and it will happen to new workload not for current one.
+    
+ ![image](https://user-images.githubusercontent.com/54719289/105758704-92954300-5f75-11eb-881e-b110adc56dbb.png)
+    
+    ![image](https://user-images.githubusercontent.com/54719289/105758403-38947d80-5f75-11eb-9a4c-d37e3f8f3139.png)
+    
+   Still the page is active is in both node but if you leave from the node it wont be.
+   
+   ![image](https://user-images.githubusercontent.com/54719289/105758904-cf613a00-5f75-11eb-84bc-607346faf719.png)
+   ![image](https://user-images.githubusercontent.com/54719289/105758921-d720de80-5f75-11eb-9cbb-f4c92b38ebcb.png)
+
+        In node 2:  (Status itself Downand not in ready)
+        
+            docker swarm leave 
+            
+![image](https://user-images.githubusercontent.com/54719289/105759167-22d38800-5f76-11eb-8a6f-69378db8fa0b.png)
+![image](https://user-images.githubusercontent.com/54719289/105759209-2ff07700-5f76-11eb-9d01-caf20a5a5f6d.png)
+
+        in master:
+        
+ ![image](https://user-images.githubusercontent.com/54719289/105759308-50203600-5f76-11eb-9bbc-99825180a1ad.png)
+
+        
+       # To reuse node2 again, we need to use join command
+            docker swarm join --token SWMTKN-1-3zd56ii6r8hga67w3z9ukvkrmnxwycht5wm9fuo1acvguskjrd-2u2f1qzp505eayh8pov3fov7w 172.31.89.138:2377
+
+![image](https://user-images.githubusercontent.com/54719289/105759825-ee140080-5f76-11eb-82a0-1418ecb9f40c.png)
+![image](https://user-images.githubusercontent.com/54719289/105759850-f704d200-5f76-11eb-804d-a3a80b9690bb.png)
+![image](https://user-images.githubusercontent.com/54719289/105759923-10a61980-5f77-11eb-894a-1dbce0129be7.png)
+
+
+   
 
 
 
