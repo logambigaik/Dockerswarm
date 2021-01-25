@@ -1,8 +1,15 @@
 # docker-swarm
-
+    Docker swarm:
+    ==========
+		If we want to Maintain or create cluster of  docker machine or engine we need to use docker swarm.
+		Docker machine can be hosted on different nodes and these nodes will be form of cluster when connected with docker swarm.
+		Docker swarm is a container orchestration(automation )tool which allow user to manage multiple containers deployed across multiple machines
+		In system admin, orchestration is the automated configuration , coordination, and management of computer systems and software.
 # Pre-Requisites
-    Minimum Two EC2-Instance
-    Install Docker
+    Three EC2-Instance
+    Install Docker and start the service 
+    service docker start
+    
 # Initilize Docker Swarm Master using below command
     docker swarm init
 ![image](https://user-images.githubusercontent.com/54719289/105714923-f7837580-5f42-11eb-80ad-b037e6f9d650.png)
@@ -163,8 +170,94 @@ With nginx:
 ![image](https://user-images.githubusercontent.com/54719289/105759923-10a61980-5f77-11eb-894a-1dbce0129be7.png)
 
 
+        # In case you forgot th token we can use below command,
+        
+            docker swarm join-token manager
+
+![image](https://user-images.githubusercontent.com/54719289/105764522-17378f80-5f7d-11eb-94a3-593f387f4ea9.png)
+
+
+
+##########################################################################################################################################
+
+###   Docker swarm with docker compose
+
+#########################################################################################################################################
+
+Sample:https://docs.docker.com/engine/swarm/stack-deploy/
+
+
+    1. Create a directory for the project:
+
+        $ mkdir stackdemo
+        $ cd stackdemo
+    2.  Create a file called app.py in the project directory and paste this in:
+
+        from flask import Flask
+        from redis import Redis
+
+        app = Flask(__name__)
+        redis = Redis(host='redis', port=6379)
+
+        @app.route('/')
+        def hello():
+            count = redis.incr('hits')
+            return 'Hello World! I have been seen {} times.\n'.format(count)
+
+        if __name__ == "__main__":
+            app.run(host="0.0.0.0", port=8000, debug=True)
+        
+     3.   Create a file called requirements.txt and paste these two lines in:
+
+            flask
+            redis
+
+    4.      Create a file called Dockerfile and paste this in:
+
+            FROM python:3.4-alpine
+            ADD . /code
+            WORKDIR /code
+            RUN pip install -r requirements.txt
+            CMD ["python", "app.py"]
+
+    5.      Create a file called docker-compose.yml and paste this in:
+
+            version: "3.9"
+
+            services:
+            web:
+                image: 127.0.0.1:5000/stackdemo
+                build: .
+                ports:
+                - "8000:8000"
+            redis:
+                image: redis:alpine
+
+        The image for the web app is built using the Dockerfile defined above. It’s also tagged with 127.0.0.1:5000 - the address of the registry created earlier. This is important when distributing the app to the swarm.
+        
+        
+    6. Install docker-compose:
+    
+    
+         sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+         sudo chmod +x /usr/local/bin/docker-compose
+         sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+         docker-compose --version
+    
+    
+   7.   docker-compose up -d
+        
+        docker ps
+        
+        After creating image, check with docker ps
+![image](https://user-images.githubusercontent.com/54719289/105767240-d3df2000-5f80-11eb-95cb-6a82924819b1.png)
+
+
+   8.   Check the image with curl
    
-
-
-
-
+        curl localhost:8000/
+        
+   ![image](https://user-images.githubusercontent.com/54719289/105767573-30dad600-5f81-11eb-9238-bead4f13500a.png)
+   
+   
+   
