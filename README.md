@@ -170,11 +170,16 @@ With nginx:
 ![image](https://user-images.githubusercontent.com/54719289/105759923-10a61980-5f77-11eb-894a-1dbce0129be7.png)
 
 
-        # In case you forgot th token we can use below command,
+        # In case you need to add multi master
         
             docker swarm join-token manager
 
 ![image](https://user-images.githubusercontent.com/54719289/105764522-17378f80-5f7d-11eb-94a3-593f387f4ea9.png)
+![image](https://user-images.githubusercontent.com/54719289/105773260-a3e84a80-5f89-11eb-8763-aa52f7b56270.png)
+		
+		docker node ls
+
+![image](https://user-images.githubusercontent.com/54719289/105773398-d5f9ac80-5f89-11eb-8b48-f205bebc275d.png)
 
    
 
@@ -327,6 +332,15 @@ Sample:https://docs.docker.com/engine/swarm/stack-deploy/
 ![image](https://user-images.githubusercontent.com/54719289/105772242-e3159c00-5f87-11eb-94f2-4a7a147b379e.png)
 ![image](https://user-images.githubusercontent.com/54719289/105772263-edd03100-5f87-11eb-862f-c4bd45287320.png)
 ![image](https://user-images.githubusercontent.com/54719289/105772281-f7f22f80-5f87-11eb-9399-6a12cf1a9a28.png)
+	
+	docker node ls in master and master2:
+
+![image](https://user-images.githubusercontent.com/54719289/105774055-d3e41d80-5f8a-11eb-946c-2884cde68b93.png)
+
+	but in master no images
+	
+![image](https://user-images.githubusercontent.com/54719289/105774267-17d72280-5f8b-11eb-9f89-e93dadabf9a2.png)
+
 
   
   12.	Bring the stack down with docker stack rm:
@@ -337,13 +351,21 @@ Sample:https://docs.docker.com/engine/swarm/stack-deploy/
 	Removing service stackdemo_redis
 	Removing network stackdemo_default
 	
+![image](https://user-images.githubusercontent.com/54719289/105774385-35a48780-5f8b-11eb-96e5-b8bd852c20c0.png)
+
+	
   13.	Bring the registry down with docker service rm:
 
 	$ docker service rm registry
 	
 	If you’re just testing things out on a local machine and want to bring your Docker Engine out of swarm mode, use docker swarm leave:
 
+![image](https://user-images.githubusercontent.com/54719289/105774479-4d7c0b80-5f8b-11eb-924f-ad6d22974075.png)
+
 	$ docker swarm leave --force
-  
+
+![image](https://user-images.githubusercontent.com/54719289/105774565-64baf900-5f8b-11eb-89b5-019263d68db6.png)
+
+
   
   
