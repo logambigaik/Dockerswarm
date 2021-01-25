@@ -279,7 +279,8 @@ Sample:https://docs.docker.com/engine/swarm/stack-deploy/
 	
 	need to change the composefile with our repo as klogambigai/stackdemo
 	
-	![image](https://user-images.githubusercontent.com/54719289/105769098-5072fe00-5f83-11eb-8708-7bab1ee198e9.png)
+	
+![image](https://user-images.githubusercontent.com/54719289/105769098-5072fe00-5f83-11eb-8708-7bab1ee198e9.png)
 	
 	follow step 7, docker-compose build & docker-compose push
 ![image](https://user-images.githubusercontent.com/54719289/105769582-06d6e300-5f84-11eb-8b65-3b319cd226c9.png)
@@ -321,6 +322,11 @@ Sample:https://docs.docker.com/engine/swarm/stack-deploy/
 	  
 ![image](https://user-images.githubusercontent.com/54719289/105771593-ccbb1080-5f86-11eb-9d41-18f835cb2cd5.png)
 	  
+	Totally ten services are in master,node1 and node2
+	
+![image](https://user-images.githubusercontent.com/54719289/105772242-e3159c00-5f87-11eb-94f2-4a7a147b379e.png)
+![image](https://user-images.githubusercontent.com/54719289/105772263-edd03100-5f87-11eb-862f-c4bd45287320.png)
+![image](https://user-images.githubusercontent.com/54719289/105772281-f7f22f80-5f87-11eb-9399-6a12cf1a9a28.png)
 
   
   12.	Bring the stack down with docker stack rm:
