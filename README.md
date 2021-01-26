@@ -145,10 +145,10 @@ With nginx:
     
     ![image](https://user-images.githubusercontent.com/54719289/105758403-38947d80-5f75-11eb-9a4c-d37e3f8f3139.png)
     
-   Still the page is active is in both node but if you leave from the node it wont be.
+   Still the page is active  in both node but if you leave from the node it wont be.
    
-   ![image](https://user-images.githubusercontent.com/54719289/105758904-cf613a00-5f75-11eb-84bc-607346faf719.png)
-   ![image](https://user-images.githubusercontent.com/54719289/105758921-d720de80-5f75-11eb-9cbb-f4c92b38ebcb.png)
+ ![image](https://user-images.githubusercontent.com/54719289/105758904-cf613a00-5f75-11eb-84bc-607346faf719.png)
+ ![image](https://user-images.githubusercontent.com/54719289/105758921-d720de80-5f75-11eb-9cbb-f4c92b38ebcb.png)
 
         In node 2:  (Status itself Downand not in ready)
         
@@ -166,7 +166,9 @@ With nginx:
             docker swarm join --token SWMTKN-1-3zd56ii6r8hga67w3z9ukvkrmnxwycht5wm9fuo1acvguskjrd-2u2f1qzp505eayh8pov3fov7w 172.31.89.138:2377
 
 ![image](https://user-images.githubusercontent.com/54719289/105759825-ee140080-5f76-11eb-82a0-1418ecb9f40c.png)
+
 ![image](https://user-images.githubusercontent.com/54719289/105759850-f704d200-5f76-11eb-804d-a3a80b9690bb.png)
+
 ![image](https://user-images.githubusercontent.com/54719289/105759923-10a61980-5f77-11eb-894a-1dbce0129be7.png)
 
 
@@ -175,9 +177,11 @@ With nginx:
             docker swarm join-token manager
 
 ![image](https://user-images.githubusercontent.com/54719289/105764522-17378f80-5f7d-11eb-94a3-593f387f4ea9.png)
+
 ![image](https://user-images.githubusercontent.com/54719289/105773260-a3e84a80-5f89-11eb-8763-aa52f7b56270.png)
 		
 		docker node ls
+
 
 ![image](https://user-images.githubusercontent.com/54719289/105773398-d5f9ac80-5f89-11eb-8b48-f205bebc275d.png)
 
