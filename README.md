@@ -172,7 +172,11 @@ With nginx:
 ![image](https://user-images.githubusercontent.com/54719289/105759923-10a61980-5f77-11eb-894a-1dbce0129be7.png)
 
 
-        # In case you need to add multi master
+        #   In case you forget the join- token , use this command to retrieve
+		
+		docker swarm join-token worker
+	
+	#   In case you need to add multi master
         
             docker swarm join-token manager
 
