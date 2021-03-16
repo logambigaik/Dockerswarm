@@ -377,3 +377,24 @@ Sample:https://docs.docker.com/engine/swarm/stack-deploy/
 
   
   
+# Docker scale:
+
+
+ Its like docker replicas, instead we can scale,
+ 
+ For example:
+ 
+	 docker service scale  stackdemo_web=20
+
+![image](https://user-images.githubusercontent.com/54719289/111370909-b0874600-8690-11eb-9ecf-5532dfdc9add.png)
+
+![image](https://user-images.githubusercontent.com/54719289/111370978-c137bc00-8690-11eb-97a4-621c9270cdc7.png)
+
+In node:
+
+![image](https://user-images.githubusercontent.com/54719289/111371105-e3313e80-8690-11eb-9263-993b6af66db5.png)
+
+
+
+
+
